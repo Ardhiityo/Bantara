@@ -3,12 +3,12 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="index.html"><img src="assets/compiled/svg/logo.svg" alt="Logo" srcset=""></a>
+                    <a href="index.html">Bantara</a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                        aria-hidden="true" role="img" class="iconify iconify--system-uicons" width="20"
-                        height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                        role="img" class="iconify iconify--system-uicons" width="20" height="20"
+                        preserveAspectRatio="xMidYMid meet" viewBox="0 0 21 21">
                         <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round"
                             stroke-linejoin="round">
                             <path
@@ -52,29 +52,29 @@
                 </li>
 
                 <li class="sidebar-item {{ request()->routeIs('members.*') ? 'active' : '' }} ">
-                    <a href="" class='sidebar-link'>
-                        <i class="bi bi-stack"></i>
+                    <a href="{{ route('members.index') }}" class='sidebar-link'>
+                        <i class="fa-solid fa-users"></i>
                         <span>Anggota</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{ request()->routeIs('positions.*') ? 'active' : '' }} ">
-                    <a href="" class='sidebar-link'>
-                        <i class="bi bi-stack"></i>
+                    <a href="{{ route('positions.index') }}" class='sidebar-link'>
+                        <i class="fa-solid fa-user-tie"></i>
                         <span>Jabatan</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{ request()->routeIs('competitions.*') ? 'active' : '' }} ">
-                    <a href="" class='sidebar-link'>
-                        <i class="bi bi-stack"></i>
+                    <a href="{{ route('competitions.index') }}" class='sidebar-link'>
+                        <i class="fa-solid fa-trophy"></i>
                         <span>Kompetisi</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{ request()->routeIs('member-competitions.*') ? 'active' : '' }} ">
-                    <a href="" class='sidebar-link'>
-                        <i class="bi bi-stack"></i>
+                    <a href="{{ route('member-competitions.index') }}" class='sidebar-link'>
+                        <i class="fa-solid fa-list"></i>
                         <span>Pendaftar</span>
                     </a>
                 </li>

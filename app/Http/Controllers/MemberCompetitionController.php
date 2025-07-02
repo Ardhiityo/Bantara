@@ -12,7 +12,7 @@ class MemberCompetitionController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.member-competition.index');
     }
 
     /**

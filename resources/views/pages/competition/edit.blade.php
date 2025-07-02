@@ -41,7 +41,7 @@
 
                         <div class="form-group">
                             <label for="disabledInput">Static Text</label>
-                            <p class="form-control-static" id="staticInput">email@mazer.com</p>
+                            <p class="form-control-static" id="staticInput">email@bantara.com</p>
                         </div>
                     </div>
                 </div>

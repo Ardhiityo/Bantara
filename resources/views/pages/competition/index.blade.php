@@ -35,7 +35,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 d-flex justify-content-end">
-                            <a href="{{ route('lectures.create') }}" class="btn btn-primary mb-3">Create</a>
+                            <a href="{{ route('members.create') }}" class="btn btn-primary mb-3">Create</a>
                         </div>
                     </div>
                     <table class="table table-striped" id="table1">
@@ -44,8 +44,9 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Phone</th>
-                                <th>City</th>
-                                <th>Status</th>
+                                <th>Position</th>
+                                <th>Verifikasi</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -57,6 +58,7 @@
                                 <td>
                                     <span class="badge bg-success">Active</span>
                                 </td>
+                                <td>Aksi</td>
                             </tr>
                         </tbody>
                     </table>
