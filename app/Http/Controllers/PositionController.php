@@ -2,17 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePositionRequest;
 use App\Models\Position;
+use App\Services\Interfaces\PositionInterface;
 use Illuminate\Http\Request;
 
 class PositionController extends Controller
 {
+    public function __construct(private PositionInterface $positionRepository) {}
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.position.index');
+        $positions = $this->positionRepository->getPaginated();
+
+        return view('pages.position.index', compact('positions'));
     }
 
     /**
@@ -26,9 +32,11 @@ class PositionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePositionRequest $request)
     {
-        //
+        $this->positionRepository->store($request->validated());
+
+        return redirect()->route('positions.index')->with('success', 'Position created successfully');
     }
 
     /**

@@ -27,12 +27,14 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="">
+                    <form action="{{ route('members.store') }}" method="POST">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="basicInput">Nama</label>
-                                    <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                                    <input type="text" name="name" class="form-control" id="basicInput"
+                                        placeholder="Enter email">
                                     <p>
                                         <small class="text-muted">Min 3 character.</small>
                                     </p>
@@ -42,7 +44,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="helpInputTop">Email</label>
-                                    <input type="text" class="form-control" id="helpInputTop" placeholder="Enter email">
+                                    <input name="email" type="email" class="form-control" id="helpInputTop"
+                                        placeholder="Enter email">
                                     <p>
                                         <small class="text-muted">Email format.</small>
                                     </p>
@@ -52,7 +55,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="helperText">Password</label>
-                                    <input type="text" id="helperText" class="form-control" placeholder="Enter name">
+                                    <input name="password" type="password" id="helperText" class="form-control"
+                                        placeholder="Enter name">
                                     <p>
                                         <small class="text-muted">Min 8 character.</small>
                                     </p>
@@ -62,7 +66,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="disabledInput">Phone</label>
-                                    <input type="text" class="form-control" id="disabledInput" placeholder="08xxx">
+                                    <input name="phone" type="text" class="form-control" id="disabledInput"
+                                        placeholder="08xxx">
                                     <p>
                                         <small class="text-muted">Min 10 digits.</small>
                                     </p>
@@ -72,10 +77,13 @@
                             <div class="col-md-6 mb-4">
                                 <h6>Position</h6>
                                 <fieldset class="form-group">
-                                    <select class="form-select" id="basicSelect">
-                                        <option>IT</option>
-                                        <option>Blade Runner</option>
-                                        <option>Thor Ragnarok</option>
+                                    <select name="position_id" class="form-select" id="basicSelect">
+                                        <option value="">Choose...</option>
+                                        @foreach ($positions as $position)
+                                            <option value="{{ $position->id }}">
+                                                {{ $position->name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </fieldset>
                             </div>

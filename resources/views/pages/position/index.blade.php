@@ -41,25 +41,17 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
                                 <th>Position</th>
-                                <th>Verifikasi</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Graiden</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>076 4820 8838</td>
-                                <td>Offenburg</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <td>Aksi</td>
-                            </tr>
+                            @foreach ($positions as $position)
+                                <tr>
+                                    <td>{{ $position->name }}</td>
+                                    <td>Aksi</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

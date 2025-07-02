@@ -15,6 +15,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Services\Interfaces\MemberInterface::class,
             \App\Services\Repositories\MemberRepository::class
         );
+        $this->app->singleton(
+            \App\Services\Interfaces\PositionInterface::class,
+            \App\Services\Repositories\PositionRepository::class
+        );
     }
 
     /**
