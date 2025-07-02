@@ -41,15 +41,15 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Position</th>
-                                <th>Verifikasi</th>
-                                <th>Aksi</th>
+                                <th class="text-center">Name</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">Phone</th>
+                                <th class="text-center">Position</th>
+                                <th class="text-center">Verification</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             @foreach ($members as $member)
                                 <tr>
                                     <td>{{ $member->user->name }}</td>
@@ -58,21 +58,36 @@
                                     <td>{{ $member->position->name }}</td>
                                     <td>
                                         @if ($member->is_verified)
-                                            <span class="badge bg-success">Actived</span>
+                                            <span class="badge bg-success">
+                                                <i class="fa-solid fa-circle-check"></i>
+                                            </span>
                                         @else
-                                            <span class="badge bg-danger">Deactived</span>
+                                            <span class="badge bg-danger">
+                                                <i class="fa-solid fa-circle-xmark"></i>
+                                            </span>
                                         @endif
                                     </td>
-                                    <td>Aksi</td>
+                                    <td class="d-flex justify-content-center align-items-center gap-3">
+                                        <a href="{{ route('members.edit', ['member' => $member->id]) }}"
+                                            class="btn btn-sm btn-warning">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <form action="{{ route('members.destroy', ['member' => $member->id]) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-sm btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </section>
-
     </div>
 @endsection
 

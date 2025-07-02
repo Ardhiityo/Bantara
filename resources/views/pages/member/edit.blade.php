@@ -27,12 +27,16 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="">
+                    <form action="{{ route('members.update', ['member' => $member->id]) }}" method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="basicInput">Nama</label>
-                                    <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                                    <label for="name">Nama</label>
+                                    <input name="name" type="text" class="form-control"
+                                        value="{{ old('name', $member->user->name) }}" id="name"
+                                        placeholder="Enter name">
                                     <p>
                                         <small class="text-muted">Min 3 character.</small>
                                     </p>
@@ -41,8 +45,10 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="helpInputTop">Email</label>
-                                    <input type="text" class="form-control" id="helpInputTop" placeholder="Enter email">
+                                    <label for="email">Email</label>
+                                    <input name="email" type="text" class="form-control"
+                                        value="{{ old('email', $member->user->email) }}" id="email"
+                                        placeholder="Enter email">
                                     <p>
                                         <small class="text-muted">Email format.</small>
                                     </p>
@@ -51,8 +57,9 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="helperText">Password</label>
-                                    <input type="text" id="helperText" class="form-control" placeholder="Enter name">
+                                    <label for="password">Password</label>
+                                    <input name="password" type="text" id="password" class="form-control"
+                                        placeholder="Enter password">
                                     <p>
                                         <small class="text-muted">Min 8 character.</small>
                                     </p>
@@ -61,8 +68,9 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="disabledInput">Phone</label>
-                                    <input type="text" class="form-control" id="disabledInput" placeholder="08xxx">
+                                    <label for="phone">Phone</label>
+                                    <input name="phone" type="text" class="form-control" id="phone"
+                                        value="{{ old('phone', $member->phone) }}" placeholder="08xxx">
                                     <p>
                                         <small class="text-muted">Min 10 digits.</small>
                                     </p>
@@ -72,10 +80,14 @@
                             <div class="col-md-6 mb-4">
                                 <h6>Position</h6>
                                 <fieldset class="form-group">
-                                    <select class="form-select" id="basicSelect">
-                                        <option>IT</option>
-                                        <option>Blade Runner</option>
-                                        <option>Thor Ragnarok</option>
+                                    <select name="position_id" class="form-select">
+                                        <option value="">Choose...</option>
+                                        @foreach ($positions as $position)
+                                            <option value="{{ $position->id }}"
+                                                {{ old('position_id', $member->position_id) == $position->id ? 'selected' : '' }}>
+                                                {{ $position->name }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </fieldset>
                             </div>

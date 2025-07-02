@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreMemberRequest;
 use App\Models\Member;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\StoreMemberRequest;
+use App\Http\Requests\UpdateMemberRequest;
 use App\Services\Interfaces\MemberInterface;
 use App\Services\Interfaces\PositionInterface;
-use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
@@ -20,7 +22,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = $this->memberRepository->getPaginated();
+        $members = $this->memberRepository->gets();
 
         return view('pages.member.index', compact('members'));
     }
@@ -58,15 +60,21 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        //
+        $positions = $this->positionRepository->gets();
+
+        $member->load(['position:id,name', 'user:id,name,email']);
+
+        return view('pages.member.edit', compact('member', 'positions'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Member $member)
+    public function update(UpdateMemberRequest $request, Member $member)
     {
-        //
+        $this->memberRepository->update($request->validated(), $member);
+
+        return redirect()->route('members.index')->with('success', 'Member updated successfully');
     }
 
     /**
@@ -74,6 +82,8 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+        $member->user()->delete();
+
+        return redirect()->route('members.index')->with('success', 'Member deleted successfully');
     }
 }

@@ -2,8 +2,11 @@
 
 namespace App\Services\Interfaces;
 
+use App\Models\Member;
+
 interface MemberInterface
 {
-    public function getPaginated();
+    public function gets();
     public function store($data);
+    public function update($data, Member $member);
 }

@@ -41,24 +41,35 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Position</th>
-                                <th>Aksi</th>
+                                <th class="text-center">Position</th>
+                                <th class="text-center">Aksi</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             @foreach ($positions as $position)
                                 <tr>
                                     <td>{{ $position->name }}</td>
-                                    <td>Aksi</td>
+                                    <td class="d-flex justify-content-center align-items-center gap-3">
+                                        <a href="{{ route('positions.edit', ['position' => $position->id]) }}"
+                                            class="btn btn-sm btn-warning">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <form action="{{ route('positions.destroy', ['position' => $position->id]) }}"
+                                            method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-sm btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </section>
-
     </div>
 @endsection
 

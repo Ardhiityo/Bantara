@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePositionRequest extends FormRequest
+class UpdateMemberRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,11 @@ class StorePositionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'min:3', 'max:25', 'unique:positions,name']
+            'name' => ['required', 'min:3', 'max:25'],
+            'email' => ['required', 'email', 'unique:users,email,' . $this->route('member')->id],
+            'phone' => ['required', 'numeric', 'unique:members,phone,' . $this->route('member')->id],
+            'password' => ['nullable', 'min:8', 'max:25'],
+            'position_id' => ['required', 'exists:positions,id'],
         ];
     }
 }

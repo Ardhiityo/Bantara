@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePositionRequest;
+use App\Http\Requests\UpdatePositionRequest;
 use App\Models\Position;
 use App\Services\Interfaces\PositionInterface;
-use Illuminate\Http\Request;
 
 class PositionController extends Controller
 {
@@ -52,15 +52,17 @@ class PositionController extends Controller
      */
     public function edit(Position $position)
     {
-        //
+        return view('pages.position.edit', compact('position'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Position $position)
+    public function update(UpdatePositionRequest $request, Position $position)
     {
-        //
+        $position->update($request->validated());
+
+        return redirect()->route('positions.index')->with('success', 'Position updated successfully');
     }
 
     /**
@@ -68,6 +70,8 @@ class PositionController extends Controller
      */
     public function destroy(Position $position)
     {
-        //
+        $position->delete();
+
+        return redirect()->route('positions.index')->with('success', 'Position deleted successfully');
     }
 }
