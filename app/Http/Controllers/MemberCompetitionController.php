@@ -2,13 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMemberCompetitionRequest;
+use App\Http\Requests\UpdateMemberCompetitionRequest;
+use App\Http\Requests\UpdateMemberRequest;
 use App\Models\MemberCompetition;
+use App\Rules\CheckUpdateMemberCompetition;
+use App\Services\Interfaces\CompetitionInterface;
 use App\Services\Interfaces\MemberCompetitionInterface;
+use App\Services\Interfaces\MemberInterface;
 use Illuminate\Http\Request;
 
 class MemberCompetitionController extends Controller
 {
-    public function __construct(private MemberCompetitionInterface $memberCompetitionRepository) {}
+    public function __construct(
+        private MemberCompetitionInterface $memberCompetitionRepository,
+        private MemberInterface $memberRepository,
+        private CompetitionInterface $competitionRepository,
+    ) {}
 
     /**
      * Display a listing of the resource.
@@ -25,15 +35,20 @@ class MemberCompetitionController extends Controller
      */
     public function create()
     {
-        return  view('pages.member-competition.create');
+        $members = $this->memberRepository->gets();
+        $competitions = $this->competitionRepository->gets();
+
+        return  view('pages.member-competition.create', compact('members', 'competitions'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreMemberCompetitionRequest $request)
     {
-        //
+        $this->memberCompetitionRepository->store($request->validated());
+
+        return redirect()->route('member-competitions.index')->with('success', 'Member Competition created successfully.');
     }
 
     /**
@@ -49,15 +64,20 @@ class MemberCompetitionController extends Controller
      */
     public function edit(MemberCompetition $memberCompetition)
     {
-        return view('pages.member-competition.edit', compact('memberCompetition'));
+        $members = $this->memberRepository->gets();
+        $competitions = $this->competitionRepository->gets();
+
+        return view('pages.member-competition.edit', compact('memberCompetition', 'members', 'competitions'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, MemberCompetition $memberCompetition)
+    public function update(UpdateMemberCompetitionRequest $request, MemberCompetition $memberCompetition)
     {
-        //
+        $memberCompetition->update($request->validated());
+
+        return redirect()->route('member-competitions.index')->with('success', 'Member Competition updated successfully.');
     }
 
     /**
@@ -67,6 +87,6 @@ class MemberCompetitionController extends Controller
     {
         $memberCompetition->delete();
 
-        return redirect()->route('member-competition.index')->with('success', 'Member Competition deleted successfully.');
+        return redirect()->route('member-competitions.index')->with('success', 'Member Competition deleted successfully.');
     }
 }

@@ -27,15 +27,16 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="start_date">Start Date</label>
-                                <input type="date" class="form-control" value="{{ old('start_date') }}" id="start_date"
+                                <input type="date" class="form-control"
+                                    value="{{ old('start_date', now()->format('Y-m-d')) }}" id="start_date"
                                     name="start_date">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="end_date">End Date</label>
-                                <input type="date" class="form-control" id="end_date" value="{{ old('end_date') }}"
-                                    name="end_date">
+                                <input type="date" class="form-control" id="end_date"
+                                    value="{{ old('end_date', now()->format('Y-m-d')) }}" name="end_date">
                             </div>
                         </div>
                     </div>
