@@ -74,7 +74,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6 mb-4">
+                            <div class="col-md-6">
                                 <h6>Position</h6>
                                 <fieldset class="form-group">
                                     <select name="position_id" class="form-select" id="basicSelect">
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-6 mt-4">
                                 <button class="btn btn-primary">Submit</button>
                             </div>
                         </div>

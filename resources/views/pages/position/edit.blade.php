@@ -12,7 +12,7 @@
                     @csrf
                     @method('PUT')
                     <div class="row">
-                        <div class="col-md-6 mb-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">Position</label>
                                 <input name="name" type="text" class="form-control" id="name"
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-6 mt-4">
                             <button class=" btn btn-primary">Submit</button>
                         </div>
                     </div>

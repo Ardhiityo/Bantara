@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Competition;
 use Illuminate\Http\Request;
+use App\Services\Interfaces\CompetitionInterface;
 
 class CompetitionController extends Controller
 {
+    public function __construct(
+        private CompetitionInterface $competitionRepository
+    ) {}
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.competition.index');
+        $competitions = $this->competitionRepository->gets();
+
+        return view('pages.competition.index', compact('competitions'));
     }
 
     /**

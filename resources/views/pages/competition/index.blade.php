@@ -41,25 +41,37 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Position</th>
-                                <th>Verifikasi</th>
-                                <th>Aksi</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Graiden</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>076 4820 8838</td>
-                                <td>Offenburg</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <td>Aksi</td>
-                            </tr>
+                            @foreach ($competitions as $competition)
+                                <tr>
+                                    <td>{{ $competition->title }}</td>
+                                    <td>{{ $competition->description }}</td>
+                                    <td>{{ $competition->start_date }}</td>
+                                    <td>{{ $competition->end_date }}</td>
+                                    <td>
+                                        <a href="{{ route('competitions.edit', ['competition' => $competition->id]) }}"
+                                            class="btn btn-primary">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <form
+                                            action="{{ route('competitions.destroy', ['competition' => $competition->id]) }}"
+                                            method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
