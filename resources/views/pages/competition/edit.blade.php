@@ -6,46 +6,49 @@
             <div class="card-header">
                 <h4 class="card-title">Basic Inputs</h4>
             </div>
-
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="basicInput">Basic Input</label>
-                            <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                <form action="{{ route('competitions.update', ['competition' => $competition->id]) }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" class="form-control" value="{{ old('title', $competition->title) }}"
+                                    name="title" id="title">
+                            </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="helpInputTop">Input text with help</label>
-                            <small class="text-muted">eg.<i>someone@example.com</i></small>
-                            <input type="text" class="form-control" id="helpInputTop">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea id="description" class="form-control" placeholder="Enter description" name="description">{{ old('description', $competition->description) }}</textarea>
+                                <p><small class="text-muted">Find helper text here for given textbox.</small></p>
+                            </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="helperText">With Helper Text</label>
-                            <input type="text" id="helperText" class="form-control" placeholder="Name">
-                            <p><small class="text-muted">Find helper text here for given textbox.</small></p>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="start_date">Start Date</label>
+                                <input type="date" class="form-control"
+                                    value="{{ old('start_date', $competition->start_date) }}" id="start_date"
+                                    name="start_date">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="disabledInput">Disabled Input</label>
-                            <input type="text" class="form-control" id="disabledInput" placeholder="Disabled Text"
-                                disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="readonlyInput">Readonly Input</label>
-                            <input type="text" class="form-control" id="readonlyInput" readonly="readonly"
-                                value="You can't update me :P">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="disabledInput">Static Text</label>
-                            <p class="form-control-static" id="staticInput">email@bantara.com</p>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="end_date">End Date</label>
+                                <input type="date" class="form-control" id="end_date"
+                                    value="{{ old('end_date', $competition->end_date) }}" name="end_date">
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-6 mt-4">
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
             </div>
+        </div>
         </div>
     </section>
 @endsection

@@ -55,7 +55,7 @@
                                     <td>{{ $competition->description }}</td>
                                     <td>{{ $competition->start_date }}</td>
                                     <td>{{ $competition->end_date }}</td>
-                                    <td>
+                                    <td class="d-flex align-items-center gap-3">
                                         <a href="{{ route('competitions.edit', ['competition' => $competition->id]) }}"
                                             class="btn btn-primary">
                                             <i class="fa-solid fa-pen-to-square"></i>

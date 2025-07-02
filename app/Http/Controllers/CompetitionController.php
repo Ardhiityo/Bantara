@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCompetitionRequest;
 use App\Models\Competition;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\CompetitionInterface;
@@ -33,9 +34,11 @@ class CompetitionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCompetitionRequest $request)
     {
-        //
+        $this->competitionRepository->store($request->validated());
+
+        return redirect()->route('competitions.index')->with('success', 'Competition created successfully');
     }
 
     /**
@@ -51,7 +54,7 @@ class CompetitionController extends Controller
      */
     public function edit(Competition $competition)
     {
-        //
+        return view('pages.competition.edit', compact('competition'));
     }
 
     /**
@@ -67,6 +70,8 @@ class CompetitionController extends Controller
      */
     public function destroy(Competition $competition)
     {
-        //
+        $competition->delete();
+
+        return redirect()->route('competition.index')->with('success', 'Competition deleted successfully');
     }
 }

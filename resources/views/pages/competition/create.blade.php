@@ -13,26 +13,29 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control" id="title">
+                                <input type="text" class="form-control" value="{{ old('title') }}" name="title"
+                                    id="title">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea id="description" class="form-control" placeholder="Enter description" name="description"></textarea>
+                                <textarea id="description" class="form-control" placeholder="Enter description" name="description">{{ old('description') }}</textarea>
                                 <p><small class="text-muted">Find helper text here for given textbox.</small></p>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="start_date">Start Date</label>
-                                <input type="date" class="form-control" id="start_date" name="start_date">
+                                <input type="date" class="form-control" value="{{ old('start_date') }}" id="start_date"
+                                    name="start_date">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="end_date">End Date</label>
-                                <input type="date" class="form-control" id="end_date" name="end_date">
+                                <input type="date" class="form-control" id="end_date" value="{{ old('end_date') }}"
+                                    name="end_date">
                             </div>
                         </div>
                     </div>

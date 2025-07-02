@@ -26,4 +26,9 @@ class Member extends Model
     {
         return $this->belongsTo(Position::class);
     }
+
+    public function memberCompetitions()
+    {
+        return $this->belongsToMany(Competition::class, 'member_competition');
+    }
 }
