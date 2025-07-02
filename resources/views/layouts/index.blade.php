@@ -14,6 +14,7 @@
 
 <body>
     <script src="{{ asset('assets/static/js/initTheme.js') }}"></script>
+    @include('sweetalert::alert')
 
     <div id="app">
         <x-sidebar />

@@ -4,6 +4,7 @@ namespace App\Rules;
 
 use Closure;
 use App\Models\Member;
+use App\Models\MemberCompetition;
 use Illuminate\Contracts\Validation\ValidationRule;
 
 class CheckUpdateMemberCompetition implements ValidationRule
@@ -21,14 +22,12 @@ class CheckUpdateMemberCompetition implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        $member = Member::find($this->memberId)->memberCompetitions()
-            ->where('id', '!=', $this->memberCompetitionId)
-            ->where(
-                'competition_id',
-                $this->competitionId
-            )->exists();
+        $alreadyExists = MemberCompetition::where('id', '!=', $this->memberCompetitionId)
+            ->where('member_id', $this->memberId)
+            ->where('competition_id', $this->competitionId)
+            ->exists();
 
-        if ($member) {
+        if ($alreadyExists) {
             $fail('Member already registered in competition.');
         }
     }
