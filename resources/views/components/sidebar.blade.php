@@ -51,24 +51,31 @@
 
                 </li>
 
-                <li class="sidebar-item {{ request()->routeIs('lectures.*') ? 'active' : '' }} ">
-                    <a href="{{ route('lectures.index') }}" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('members.*') ? 'active' : '' }} ">
+                    <a href="" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
-                        <span>Dosen</span>
+                        <span>Anggota</span>
                     </a>
                 </li>
 
-                <li class="sidebar-item {{ request()->routeIs('students.*') ? 'active' : '' }} ">
-                    <a href="{{ route('students.index') }}" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('positions.*') ? 'active' : '' }} ">
+                    <a href="" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
-                        <span>Mahasiswa</span>
+                        <span>Jabatan</span>
                     </a>
                 </li>
 
-                <li class="sidebar-item {{ request()->routeIs('proposals.*') ? 'active' : '' }} ">
-                    <a href="{{ route('proposals.index') }}" class='sidebar-link'>
+                <li class="sidebar-item {{ request()->routeIs('competitions.*') ? 'active' : '' }} ">
+                    <a href="" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
-                        <span>Tugas Akhir</span>
+                        <span>Kompetisi</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item {{ request()->routeIs('member-competitions.*') ? 'active' : '' }} ">
+                    <a href="" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Pendaftar</span>
                     </a>
                 </li>
 
