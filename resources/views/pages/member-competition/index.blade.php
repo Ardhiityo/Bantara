@@ -41,25 +41,45 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Pendaftar</th>
                                 <th>Email</th>
-                                <th>Phone</th>
-                                <th>Position</th>
-                                <th>Verifikasi</th>
+                                <th>Title</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Graiden</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>076 4820 8838</td>
-                                <td>Offenburg</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <td>Aksi</td>
-                            </tr>
+                            @foreach ($memberCompetitions as $memberCompetition)
+                                <tr>
+                                    <td>{{ $memberCompetition->member->user->name }}</td>
+                                    <td>{{ $memberCompetition->member->user->email }}</td>
+                                    <td>{{ $memberCompetition->competition->title }}</td>
+                                    <td>
+                                        @if ($memberCompetition->status == 'processed')
+                                            <span class="badge bg-success">Processed</span>
+                                        @elseif ($memberCompetition->status == 'approved')
+                                            <span class="badge bg-success">Approved</span>
+                                        @else
+                                            <span class="badge bg-danger">Rejected</span>
+                                        @endif
+                                    </td>
+                                    <td class="d-flex align-items-center gap-3">
+                                        <a class="btn btn-warning"
+                                            href="{{ route('member-competitions.edit', ['member_competition' => $memberCompetition->id]) }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <form
+                                            action="{{ route('member-competitions.destroy', ['member_competition' => $memberCompetition->id]) }}"
+                                            method="POST" class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

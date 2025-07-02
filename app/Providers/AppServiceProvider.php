@@ -23,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
             \App\Services\Interfaces\CompetitionInterface::class,
             \App\Services\Repositories\CompetitionRepository::class
         );
+        $this->app->singleton(
+            \App\Services\Interfaces\MemberCompetitionInterface::class,
+            \App\Services\Repositories\MemberCompetitionRepository::class
+        );
     }
 
     /**

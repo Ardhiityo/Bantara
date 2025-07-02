@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCompetitionRequest;
+use App\Http\Requests\UpdateCompetitionRequest;
 use App\Models\Competition;
 use Illuminate\Http\Request;
 use App\Services\Interfaces\CompetitionInterface;
@@ -60,9 +61,11 @@ class CompetitionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Competition $competition)
+    public function update(UpdateCompetitionRequest $request, Competition $competition)
     {
-        //
+        $competition->update($request->validated());
+
+        return redirect()->route('competitions.index')->with('success', 'Competition updated successfully');
     }
 
     /**
@@ -72,6 +75,6 @@ class CompetitionController extends Controller
     {
         $competition->delete();
 
-        return redirect()->route('competition.index')->with('success', 'Competition deleted successfully');
+        return redirect()->route('competitions.index')->with('success', 'Competition deleted successfully');
     }
 }

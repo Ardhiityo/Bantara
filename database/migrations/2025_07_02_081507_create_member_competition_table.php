@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('member_id')->constrained('members')->onDelete('cascade');
             $table->foreignId('competition_id')->constrained('competitions')->onDelete('cascade');
+            $table->enum('status', ['processed', 'approved', 'rejected'])->default('processed');
             $table->timestamps();
         });
     }

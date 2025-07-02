@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\MemberCompetition;
+use App\Services\Interfaces\MemberCompetitionInterface;
 use Illuminate\Http\Request;
 
 class MemberCompetitionController extends Controller
 {
+    public function __construct(private MemberCompetitionInterface $memberCompetitionRepository) {}
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.member-competition.index');
+        $memberCompetitions = $this->memberCompetitionRepository->gets();
+
+        return view('pages.member-competition.index', compact('memberCompetitions'));
     }
 
     /**
@@ -20,7 +25,7 @@ class MemberCompetitionController extends Controller
      */
     public function create()
     {
-        //
+        return  view('pages.member-competition.create');
     }
 
     /**
@@ -44,7 +49,7 @@ class MemberCompetitionController extends Controller
      */
     public function edit(MemberCompetition $memberCompetition)
     {
-        //
+        return view('pages.member-competition.edit', compact('memberCompetition'));
     }
 
     /**
@@ -60,6 +65,8 @@ class MemberCompetitionController extends Controller
      */
     public function destroy(MemberCompetition $memberCompetition)
     {
-        //
+        $memberCompetition->delete();
+
+        return redirect()->route('member-competition.index')->with('success', 'Member Competition deleted successfully.');
     }
 }
