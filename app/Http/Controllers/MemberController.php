@@ -2,17 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreMemberRequest;
 use App\Models\Member;
+use App\Services\Interfaces\MemberInterface;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
+    public function __construct(private MemberInterface $memberRepository) {}
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.member.index');
+        $members = $this->memberRepository->getPaginated();
+
+        return view('pages.member.index', compact('members'));
     }
 
     /**
@@ -26,9 +32,11 @@ class MemberController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreMemberRequest $request)
     {
-        //
+        $this->memberRepository->store($request->validated());
+
+        return redirect()->route('members.index')->with('success', 'Member created successfully');
     }
 
     /**

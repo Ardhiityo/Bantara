@@ -50,16 +50,22 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Graiden</td>
-                                <td>vehicula.aliquet@semconsequat.co.uk</td>
-                                <td>076 4820 8838</td>
-                                <td>Offenburg</td>
-                                <td>
-                                    <span class="badge bg-success">Active</span>
-                                </td>
-                                <td>Aksi</td>
-                            </tr>
+                            @foreach ($members as $member)
+                                <tr>
+                                    <td>{{ $member->user->name }}</td>
+                                    <td>{{ $member->user->email }}</td>
+                                    <td>{{ $member->phone }}</td>
+                                    <td>{{ $member->position->name }}</td>
+                                    <td>
+                                        @if ($member->is_verified)
+                                            <span class="badge bg-success">Actived</span>
+                                        @else
+                                            <span class="badge bg-danger">Deactived</span>
+                                        @endif
+                                    </td>
+                                    <td>Aksi</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

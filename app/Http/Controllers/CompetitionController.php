@@ -20,7 +20,7 @@ class CompetitionController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.competition.create');
     }
 
     /**

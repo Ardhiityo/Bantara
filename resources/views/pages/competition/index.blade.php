@@ -35,7 +35,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 d-flex justify-content-end">
-                            <a href="{{ route('members.create') }}" class="btn btn-primary mb-3">Create</a>
+                            <a href="{{ route('competitions.create') }}" class="btn btn-primary mb-3">Create</a>
                         </div>
                     </div>
                     <table class="table table-striped" id="table1">
