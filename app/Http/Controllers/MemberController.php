@@ -20,7 +20,7 @@ class MemberController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.member.create');
     }
 
     /**
