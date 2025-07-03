@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\MemberCompetition;
+use Illuminate\Support\Facades\Gate;
 use App\Rules\CheckStoreMemberCompetition;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -12,7 +14,7 @@ class StoreMemberCompetitionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Gate::allows('create', MemberCompetition::class);
     }
 
     /**

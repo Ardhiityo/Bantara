@@ -32,10 +32,12 @@ class MemberCompetitionController extends Controller
      */
     public function create()
     {
-        $members = $this->memberRepository->gets();
+        $this->authorize('create', MemberCompetition::class);
+
+        $users = $this->memberRepository->gets();
         $competitions = $this->competitionRepository->gets();
 
-        return  view('pages.member-competition.create', compact('members', 'competitions'));
+        return  view('pages.member-competition.create', compact('users', 'competitions'));
     }
 
     /**
@@ -61,6 +63,8 @@ class MemberCompetitionController extends Controller
      */
     public function edit(MemberCompetition $memberCompetition)
     {
+        $this->authorize('update', MemberCompetition::class);
+
         $members = $this->memberRepository->gets();
         $competitions = $this->competitionRepository->gets();
 
@@ -82,6 +86,8 @@ class MemberCompetitionController extends Controller
      */
     public function destroy(MemberCompetition $memberCompetition)
     {
+        $this->authorize('delete', MemberCompetition::class);
+
         $memberCompetition->delete();
 
         return redirect()->route('member-competitions.index')->with('success', 'Member Competition deleted successfully.');

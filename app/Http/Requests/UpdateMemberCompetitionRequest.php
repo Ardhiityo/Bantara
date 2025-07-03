@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\MemberCompetition;
+use Illuminate\Support\Facades\Gate;
 use App\Rules\CheckUpdateMemberCompetition;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -12,7 +14,7 @@ class UpdateMemberCompetitionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Gate::allows('update', MemberCompetition::class);
     }
 
     /**

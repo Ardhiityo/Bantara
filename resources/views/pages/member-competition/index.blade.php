@@ -43,14 +43,16 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Pendaftar</th>
-                                <th>Email</th>
-                                <th>Title</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th class="text-center">Pendaftar</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">Title</th>
+                                <th class="text-center">Status</th>
+                                @role('admin')
+                                    <th>Action</th>
+                                @endrole
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             @foreach ($memberCompetitions as $memberCompetition)
                                 <tr>
                                     <td>{{ $memberCompetition->member->user->name }}</td>
