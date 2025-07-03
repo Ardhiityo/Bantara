@@ -50,14 +50,14 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            @foreach ($members as $member)
+                            @foreach ($users as $user)
                                 <tr>
-                                    <td>{{ $member->user->name }}</td>
-                                    <td>{{ $member->user->email }}</td>
-                                    <td>{{ $member->phone }}</td>
-                                    <td>{{ $member->position->name ?? '-' }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->member->phone ?? '-' }}</td>
+                                    <td>{{ $user->member->position->name ?? '-' }}</td>
                                     <td>
-                                        @if ($member->is_verified)
+                                        @if ($user->is_verified)
                                             <span class="badge bg-success">
                                                 <i class="fa-solid fa-circle-check"></i>
                                             </span>
@@ -68,11 +68,11 @@
                                         @endif
                                     </td>
                                     <td class="d-flex justify-content-center align-items-center gap-3">
-                                        <a href="{{ route('members.edit', ['member' => $member->id]) }}"
+                                        <a href="{{ route('members.edit', ['member' => $user->member->id]) }}"
                                             class="btn btn-sm btn-warning">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
-                                        <form action="{{ route('members.destroy', ['member' => $member->id]) }}"
+                                        <form action="{{ route('members.destroy', ['member' => $user->member->id]) }}"
                                             method="post">
                                             @csrf
                                             @method('DELETE')

@@ -13,14 +13,22 @@ class MemberRepository implements MemberInterface
 {
     public function gets()
     {
-        return Member::with(['user:id,name,email', 'position:id,name'])->select('id', 'user_id', 'is_verified', 'phone', 'position_id')->get();
+        return User::role('user')
+            ->with(['member:id,user_id,is_verified,phone,position_id', 'member.position:id,name'])->select('id', 'name', 'email')
+            ->get();
     }
 
     public function store($data)
     {
         try {
             DB::beginTransaction();
-            User::create($data)->member()->create($data);
+            $user = User::create($data);
+            $user->assignRole('user');
+            $user->member()->create([
+                'phone' => $data['phone'],
+                'position_id' => $data['position_id'],
+                'is_verified' => false,
+            ]);
             DB::commit();
         } catch (\Throwable $th) {
             DB::rollBack();

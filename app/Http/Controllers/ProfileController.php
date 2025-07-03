@@ -44,7 +44,7 @@ class ProfileController extends Controller
             'phone' => $data['phone'],
         ]);
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('status', 'profile-updated')->with('success', 'Profile Updated');
     }
 
     /**

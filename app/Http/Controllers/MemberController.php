@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Services\Interfaces\MemberInterface;
@@ -22,9 +20,9 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = $this->memberRepository->gets();
+        $users = $this->memberRepository->gets();
 
-        return view('pages.member.index', compact('members'));
+        return view('pages.member.index', compact('users'));
     }
 
     /**

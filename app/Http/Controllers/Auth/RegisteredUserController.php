@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
 
         $user->member()->create($request->all());
 
-        // $user->assignRole('member');
+        $user->assignRole('user');
 
         event(new Registered($user));
 
