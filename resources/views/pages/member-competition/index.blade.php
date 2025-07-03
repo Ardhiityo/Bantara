@@ -68,20 +68,22 @@
                                         @endif
                                     </td>
                                     @role('admin')
-                                        <td class="d-flex justify-content-center align-items-center gap-3">
-                                            <a class="btn btn-sm btn-warning"
-                                                href="{{ route('member-competitions.edit', ['member_competition' => $memberCompetition->id]) }}">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            <form
-                                                action="{{ route('member-competitions.destroy', ['member_competition' => $memberCompetition->id]) }}"
-                                                method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
-                                            </form>
+                                        <td>
+                                            <div class="d-flex justify-content-center gap-3">
+                                                <a class="btn btn-sm btn-warning"
+                                                    href="{{ route('member-competitions.edit', ['member_competition' => $memberCompetition->id]) }}">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                                <form
+                                                    action="{{ route('member-competitions.destroy', ['member_competition' => $memberCompetition->id]) }}"
+                                                    method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     @endrole
                                 </tr>

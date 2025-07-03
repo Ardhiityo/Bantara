@@ -54,19 +54,21 @@
                                 <tr>
                                     <td>{{ $position->name }}</td>
                                     @role('admin')
-                                        <td class="d-flex justify-content-center align-items-center gap-3">
-                                            <a href="{{ route('positions.edit', ['position' => $position->id]) }}"
-                                                class="btn btn-sm btn-warning">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            <form action="{{ route('positions.destroy', ['position' => $position->id]) }}"
-                                                method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button class="btn btn-sm btn-danger">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
-                                            </form>
+                                        <td>
+                                            <div class="d-flex justify-content-center gap-3">
+                                                <a href="{{ route('positions.edit', ['position' => $position->id]) }}"
+                                                    class="btn btn-sm btn-warning">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                                <form action="{{ route('positions.destroy', ['position' => $position->id]) }}"
+                                                    method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-sm btn-danger">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     @endrole
                                 </tr>

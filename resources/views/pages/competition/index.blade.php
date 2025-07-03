@@ -55,28 +55,30 @@
                                 <tr>
                                     <td>{{ $competition->title }}</td>
                                     <td>{{ $competition->description }}</td>
-                                    <td>{{ $competition->start_date }}</td>
-                                    <td>{{ $competition->end_date }}</td>
-                                    <td class="d-flex align-items-center justify-content-center gap-3">
-                                        @role('admin')
-                                            <a href="{{ route('competitions.edit', ['competition' => $competition->id]) }}"
-                                                class="btn btn-sm btn-primary">
-                                                <i class="fa-solid fa-pen-to-square"></i>
+                                    <td>{{ \Carbon\Carbon::parse($competition->start_date)->format('d/m/Y') }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($competition->end_date)->format('d/m/Y') }}</td>
+                                    <td>
+                                        <div class="d-flex justify-content-center gap-3">
+                                            @role('admin')
+                                                <a href="{{ route('competitions.edit', ['competition' => $competition->id]) }}"
+                                                    class="btn btn-sm btn-primary">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                                <form
+                                                    action="{{ route('competitions.destroy', ['competition' => $competition->id]) }}"
+                                                    method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            @endrole
+                                            <a class="btn btn-warning btn-sm"
+                                                href="{{ route('competitions.show', ['competition' => $competition->id]) }}">
+                                                <i class="fa-solid fa-eye"></i>
                                             </a>
-                                            <form
-                                                action="{{ route('competitions.destroy', ['competition' => $competition->id]) }}"
-                                                method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
-                                            </form>
-                                        @endrole
-                                        <a class="btn btn-warning btn-sm"
-                                            href="{{ route('competitions.show', ['competition' => $competition->id]) }}">
-                                            <i class="fa-solid fa-eye"></i>
-                                        </a>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
