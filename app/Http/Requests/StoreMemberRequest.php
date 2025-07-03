@@ -28,8 +28,7 @@ class StoreMemberRequest extends FormRequest
             'email' => ['required', 'email', 'unique:users,email'],
             'phone' => ['required', 'numeric', 'unique:members,phone'],
             'password' => ['required', 'min:8', 'max:25'],
-            'position_id' => ['required', 'exists:positions,id'],
-            'is_verified' => ['required', 'in:true,false']
+            'position_id' => ['required', 'exists:positions,id']
         ];
     }
 }

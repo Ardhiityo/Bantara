@@ -3,7 +3,7 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="index.html">Bantara</a>
+                    <a href="{{ route('dashboard') }}">Bantara</a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
@@ -34,8 +34,9 @@
                         </path>
                     </svg>
                 </div>
-                <div class="sidebar-toggler  x">
-                    <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                <div class="sidebar-toggler x">
+                    <a href="{{ route('dashboard') }}" class="sidebar-hide d-xl-none d-block"><i
+                            class="bi bi-x bi-middle"></i></a>
                 </div>
             </div>
         </div>
