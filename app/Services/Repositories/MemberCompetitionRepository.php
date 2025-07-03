@@ -11,7 +11,7 @@ class MemberCompetitionRepository implements MemberCompetitionInterface
 {
     public function gets()
     {
-        return MemberCompetition::with(['competition:id,title', 'member:id,user_id', 'member.user:id,name'])->get();
+        return MemberCompetition::with(['competition:id,title', 'member:id,user_id', 'member.user:id,name,email'])->get();
     }
 
     public function store($data)

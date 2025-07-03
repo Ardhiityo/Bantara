@@ -41,6 +41,26 @@
                                 </select>
                             </fieldset>
                         </div>
+                        <div class="col-md-6">
+                            <h6>Status</h6>
+                            <fieldset class="form-group">
+                                <select name="status" class="form-select" id="basicSelect">
+                                    <option value="">Choose...</option>
+                                    <option value="processed"
+                                        {{ old('status', $memberCompetition->status) == 'processed' ? 'selected' : '' }}>
+                                        Processed
+                                    </option>
+                                    <option value="approved"
+                                        {{ old('status', $memberCompetition->status) == 'approved' ? 'selected' : '' }}>
+                                        Approved
+                                    </option>
+                                    <option value="rejected"
+                                        {{ old('status', $memberCompetition->status) == 'rejected' ? 'selected' : '' }}>
+                                        Rejected
+                                    </option>
+                                </select>
+                            </fieldset>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-6 mt-4">

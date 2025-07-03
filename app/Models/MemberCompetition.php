@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class MemberCompetition extends Pivot
@@ -10,6 +9,7 @@ class MemberCompetition extends Pivot
     protected $fillable = [
         'member_id',
         'competition_id',
+        'status'
     ];
 
     public function member()

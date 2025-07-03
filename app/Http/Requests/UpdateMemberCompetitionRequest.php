@@ -28,7 +28,8 @@ class UpdateMemberCompetitionRequest extends FormRequest
                 $this->competition_id,
                 $this->route('member_competition')->id
             )],
-            'competition_id' => ['required', 'exists:competitions,id']
+            'competition_id' => ['required', 'exists:competitions,id'],
+            'status' => ['required', 'string', 'in:rejected,approved,processed'],
         ];
     }
 }

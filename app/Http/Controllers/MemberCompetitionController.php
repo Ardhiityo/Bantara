@@ -4,13 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreMemberCompetitionRequest;
 use App\Http\Requests\UpdateMemberCompetitionRequest;
-use App\Http\Requests\UpdateMemberRequest;
 use App\Models\MemberCompetition;
-use App\Rules\CheckUpdateMemberCompetition;
 use App\Services\Interfaces\CompetitionInterface;
 use App\Services\Interfaces\MemberCompetitionInterface;
 use App\Services\Interfaces\MemberInterface;
-use Illuminate\Http\Request;
 
 class MemberCompetitionController extends Controller
 {
