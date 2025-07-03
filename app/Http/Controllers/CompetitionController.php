@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCompetitionRequest;
 use App\Http\Requests\UpdateCompetitionRequest;
 use App\Models\Competition;
-use Illuminate\Http\Request;
 use App\Services\Interfaces\CompetitionInterface;
 
 class CompetitionController extends Controller
@@ -29,6 +28,8 @@ class CompetitionController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Competition::class);
+
         return view('pages.competition.create');
     }
 
@@ -55,6 +56,8 @@ class CompetitionController extends Controller
      */
     public function edit(Competition $competition)
     {
+        $this->authorize('update', Competition::class);
+
         return view('pages.competition.edit', compact('competition'));
     }
 
@@ -73,6 +76,8 @@ class CompetitionController extends Controller
      */
     public function destroy(Competition $competition)
     {
+        $this->authorize('delete', Competition::class);
+
         $competition->delete();
 
         return redirect()->route('competitions.index')->with('success', 'Competition deleted successfully');
