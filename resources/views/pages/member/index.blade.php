@@ -55,7 +55,7 @@
                                     <td>{{ $member->user->name }}</td>
                                     <td>{{ $member->user->email }}</td>
                                     <td>{{ $member->phone }}</td>
-                                    <td>{{ $member->position->name }}</td>
+                                    <td>{{ $member->position->name ?? '-' }}</td>
                                     <td>
                                         @if ($member->is_verified)
                                             <span class="badge bg-success">

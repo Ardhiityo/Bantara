@@ -84,7 +84,7 @@
                                         <option value="">Choose...</option>
                                         @foreach ($positions as $position)
                                             <option value="{{ $position->id }}"
-                                                {{ old('position_id', $member->position_id) == $position->id ? 'selected' : '' }}>
+                                                {{ old('position_id', $member->position_id ?? '') == $position->id ? 'selected' : '' }}>
                                                 {{ $position->name }}
                                             </option>
                                         @endforeach

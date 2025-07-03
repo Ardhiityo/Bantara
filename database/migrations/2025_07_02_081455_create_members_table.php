@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->boolean('is_verified')->default(false);
-            $table->string('phone');
-            $table->foreignId('position_id')->constrained('positions')->onDelete('cascade');
+            $table->string('phone')->nullable();
+            $table->foreignId('position_id')->nullable()->constrained('positions')->onDelete('cascade');
             $table->timestamps();
         });
     }
