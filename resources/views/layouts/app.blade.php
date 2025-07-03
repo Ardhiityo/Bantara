@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{ asset('assets/compiled/css/app-dark.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/compiled/css/iconly.css') }}">
     <script src="https://kit.fontawesome.com/364218679d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('assets/extensions/simple-datatables/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/compiled/css/table-datatable.css') }}">
     @stack('styles')
 </head>
 

@@ -1,10 +1,5 @@
 @extends('layouts.app')
 
-@push('styles')
-    <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css">
-    <link rel="stylesheet" href="assets/compiled/css/table-datatable.css">
-@endpush
-
 @section('content')
     <div class="page-heading">
         <div class="page-title">
