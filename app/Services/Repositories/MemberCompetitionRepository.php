@@ -25,4 +25,20 @@ class MemberCompetitionRepository implements MemberCompetitionInterface
             Log::info($th->getMessage(), ['store member competition']);
         }
     }
+
+    public function getTotal()
+    {
+        return MemberCompetition::whereHas('competition', function ($query) {
+            $query->where('end_date', '>=', now());
+        })->count();
+    }
+
+    public function getLatest()
+    {
+        return MemberCompetition::with(
+            ['competition:id,title', 'member:id,user_id', 'member.user:id,name']
+        )->select('id', 'member_id', 'competition_id')
+            ->limit(3)
+            ->get();
+    }
 }

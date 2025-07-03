@@ -6,4 +6,5 @@ interface CompetitionInterface
 {
     public function gets();
     public function store($data);
+    public function getTotal();
 }

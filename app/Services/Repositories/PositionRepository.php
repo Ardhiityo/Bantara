@@ -38,4 +38,9 @@ class PositionRepository implements PositionInterface
             Log::info($th->getMessage(), ['store position']);
         }
     }
+
+    public function getTotal()
+    {
+        return Position::count();
+    }
 }

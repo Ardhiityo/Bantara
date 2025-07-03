@@ -2,16 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\DashboardService;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+    public function __construct(private DashboardService $dashboardService) {}
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('dashboard');
+        $data = $this->dashboardService->getPanelData();
+
+        return view('dashboard', $data);
     }
 
     /**

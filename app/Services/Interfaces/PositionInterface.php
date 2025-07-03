@@ -7,4 +7,5 @@ interface PositionInterface
     public function gets();
     public function getPaginated();
     public function store($data);
+    public function getTotal();
 }

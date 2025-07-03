@@ -52,28 +52,28 @@
                 <li class="sidebar-item {{ request()->routeIs('members.*') ? 'active' : '' }} ">
                     <a href="{{ route('members.index') }}" class='sidebar-link'>
                         <i class="fa-solid fa-users"></i>
-                        <span>Anggota</span>
+                        <span>Members</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{ request()->routeIs('positions.*') ? 'active' : '' }} ">
                     <a href="{{ route('positions.index') }}" class='sidebar-link'>
                         <i class="fa-solid fa-user-tie"></i>
-                        <span>Jabatan</span>
+                        <span>Positions</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{ request()->routeIs('competitions.*') ? 'active' : '' }} ">
                     <a href="{{ route('competitions.index') }}" class='sidebar-link'>
                         <i class="fa-solid fa-trophy"></i>
-                        <span>Kompetisi</span>
+                        <span>Competitions</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{ request()->routeIs('member-competitions.*') ? 'active' : '' }} ">
                     <a href="{{ route('member-competitions.index') }}" class='sidebar-link'>
                         <i class="fa-solid fa-list"></i>
-                        <span>Pendaftar</span>
+                        <span>Registrations</span>
                     </a>
                 </li>
                 <li class="sidebar-title">Settings</li>

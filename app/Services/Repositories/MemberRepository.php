@@ -46,4 +46,9 @@ class MemberRepository implements MemberInterface
             Log::info($th->getMessage(), ['update member']);
         }
     }
+
+    public function getTotal()
+    {
+        return Member::count();
+    }
 }

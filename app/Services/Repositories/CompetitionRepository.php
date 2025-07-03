@@ -25,4 +25,9 @@ class CompetitionRepository implements CompetitionInterface
             Log::info($th->getMessage(), ['store competition']);
         }
     }
+
+    public function getTotal()
+    {
+        return Competition::where('end_date', '>=', now())->count();
+    }
 }
