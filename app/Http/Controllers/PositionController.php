@@ -26,6 +26,8 @@ class PositionController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Position::class);
+
         return view('pages.position.create');
     }
 
@@ -52,6 +54,8 @@ class PositionController extends Controller
      */
     public function edit(Position $position)
     {
+        $this->authorize('update', Position::class);
+
         return view('pages.position.edit', compact('position'));
     }
 
@@ -70,6 +74,8 @@ class PositionController extends Controller
      */
     public function destroy(Position $position)
     {
+        $this->authorize('delete', Position::class);
+
         $position->delete();
 
         return redirect()->route('positions.index')->with('success', 'Position deleted successfully');

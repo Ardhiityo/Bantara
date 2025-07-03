@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Member;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreMemberRequest extends FormRequest
@@ -11,7 +13,7 @@ class StoreMemberRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Gate::allows('create', Member::class);
     }
 
     /**

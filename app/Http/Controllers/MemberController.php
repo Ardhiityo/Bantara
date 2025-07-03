@@ -30,6 +30,8 @@ class MemberController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Member::class);
+
         $positions = $this->positionRepository->gets();
 
         return view('pages.member.create', compact('positions'));
@@ -58,6 +60,8 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
+        $this->authorize('update', $member);
+
         $positions = $this->positionRepository->gets();
 
         $member->load(['position:id,name', 'user:id,name,email']);
@@ -80,6 +84,8 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
+        $this->authorize('delete', Member::class);
+
         $member->user()->delete();
 
         return redirect()->route('members.index')->with('success', 'Member deleted successfully');
