@@ -42,13 +42,11 @@
         <div class="sidebar-menu">
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
-
                 <li class="sidebar-item {{ request()->routeIs('dashboard') ? 'active' : '' }} ">
                     <a href="{{ route('dashboard') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
-
                 </li>
 
                 <li class="sidebar-item {{ request()->routeIs('members.*') ? 'active' : '' }} ">
@@ -78,8 +76,35 @@
                         <span>Pendaftar</span>
                     </a>
                 </li>
-
+                <li class="sidebar-title">Settings</li>
+                <li class="sidebar-item {{ request()->routeIs('profile.*') ? 'active' : '' }} ">
+                    <a href="{{ route('profile.edit') }}" class='sidebar-link'>
+                        <i class="fas fa-user-circle"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{ request()->routeIs('logout') ? 'active' : '' }} ">
+                    <span class='sidebar-link' id="logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </span>
+                </li>
             </ul>
         </div>
     </div>
 </div>
+
+<form action="{{ route('logout') }}" method="POST" id="logout-form" class="d-none">
+    @csrf
+</form>
+
+@push('scripts')
+    <script>
+        const logout = document.getElementById('logout');
+        const logoutForm = document.getElementById('logout-form');
+        logout.addEventListener('click', function(e) {
+            e.preventDefault();
+            logoutForm.submit();
+        });
+    </script>
+@endpush

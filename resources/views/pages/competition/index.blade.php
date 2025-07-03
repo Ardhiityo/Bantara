@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.app')
 
 @push('styles')
     <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css">
@@ -57,7 +57,7 @@
                                     <td>{{ $competition->end_date }}</td>
                                     <td class="d-flex align-items-center gap-3">
                                         <a href="{{ route('competitions.edit', ['competition' => $competition->id]) }}"
-                                            class="btn btn-primary">
+                                            class="btn btn-sm btn-primary">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                         <form
@@ -65,7 +65,7 @@
                                             method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">
+                                            <button type="submit" class="btn btn-sm btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>

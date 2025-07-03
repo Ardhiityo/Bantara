@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.app')
 
 @push('styles')
     <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css">

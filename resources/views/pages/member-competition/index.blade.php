@@ -1,4 +1,4 @@
-@extends('layouts.index')
+@extends('layouts.app')
 
 @push('styles')
     <link rel="stylesheet" href="assets/extensions/simple-datatables/style.css">
@@ -64,7 +64,7 @@
                                         @endif
                                     </td>
                                     <td class="d-flex align-items-center gap-3">
-                                        <a class="btn btn-warning"
+                                        <a class="btn btn-sm btn-warning"
                                             href="{{ route('member-competitions.edit', ['member_competition' => $memberCompetition->id]) }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
@@ -73,7 +73,7 @@
                                             method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">
+                                            <button type="submit" class="btn btn-sm btn-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>
