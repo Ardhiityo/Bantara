@@ -14,7 +14,7 @@ class Member extends Model
     ];
 
     protected $casts = [
-        'is_verified' => 'boolean',
+        'is_verified' => 'bool',
     ];
 
     public function user()

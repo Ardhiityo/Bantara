@@ -91,6 +91,23 @@
                                     </select>
                                 </fieldset>
                             </div>
+
+                            <div class="col-md-6">
+                                <h6>Verification</h6>
+                                <fieldset class="form-group">
+                                    <select name="is_verified" class="form-select">
+                                        <option value="">Choose...</option>
+                                        <option value="1"
+                                            {{ old('is_verified', $member->is_verified) == 1 ? 'selected' : '' }}>
+                                            Approved
+                                        </option>
+                                        <option value="0"
+                                            {{ old('is_verified', $member->is_verified) == 0 ? 'selected' : '' }}>
+                                            Rejected
+                                        </option>
+                                    </select>
+                                </fieldset>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-6 mt-4">

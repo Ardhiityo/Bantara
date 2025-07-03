@@ -43,7 +43,7 @@
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th class="text-center">Pendaftar</th>
+                                <th class="text-center">Participant</th>
                                 <th class="text-center">Email</th>
                                 <th class="text-center">Title</th>
                                 <th class="text-center">Status</th>

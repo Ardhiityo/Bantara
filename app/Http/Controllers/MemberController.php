@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use App\Models\Competition;
+use Illuminate\Support\Facades\Log;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Services\Interfaces\MemberInterface;
@@ -75,6 +76,8 @@ class MemberController extends Controller
      */
     public function update(UpdateMemberRequest $request, Member $member)
     {
+        Log::info(json_encode($request->validated(), JSON_PRETTY_PRINT));
+
         $this->memberRepository->update($request->validated(), $member);
 
         return redirect()->route('members.index')->with('success', 'Member updated successfully');
