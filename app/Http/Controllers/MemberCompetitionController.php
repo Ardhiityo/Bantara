@@ -65,10 +65,10 @@ class MemberCompetitionController extends Controller
     {
         $this->authorize('update', MemberCompetition::class);
 
-        $members = $this->memberRepository->gets();
+        $users = $this->memberRepository->gets();
         $competitions = $this->competitionRepository->gets();
 
-        return view('pages.member-competition.edit', compact('memberCompetition', 'members', 'competitions'));
+        return view('pages.member-competition.edit', compact('memberCompetition', 'users', 'competitions'));
     }
 
     /**

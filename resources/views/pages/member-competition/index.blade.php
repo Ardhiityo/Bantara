@@ -60,7 +60,7 @@
                                     <td>{{ $memberCompetition->competition->title }}</td>
                                     <td>
                                         @if ($memberCompetition->status == 'processed')
-                                            <span class="badge bg-success">Processed</span>
+                                            <span class="badge bg-warning">Processed</span>
                                         @elseif ($memberCompetition->status == 'approved')
                                             <span class="badge bg-success">Approved</span>
                                         @else

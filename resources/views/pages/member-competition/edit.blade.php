@@ -18,10 +18,10 @@
                             <fieldset class="form-group">
                                 <select name="member_id" class="form-select" id="basicSelect">
                                     <option value="">Choose...</option>
-                                    @foreach ($members as $member)
-                                        <option value="{{ $member->id }}"
-                                            {{ old('member_id', $memberCompetition->member_id) == $member->id ? 'selected' : '' }}>
-                                            {{ $member->user->name }} - {{ $member->user->email }}
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->member->id }}"
+                                            {{ old('member_id', $memberCompetition->member_id) == $user->member->id ? 'selected' : '' }}>
+                                            {{ $user->name }} - {{ $user->email }}
                                         </option>
                                     @endforeach
                                 </select>

@@ -57,8 +57,8 @@
                                     <td>{{ $competition->description }}</td>
                                     <td>{{ $competition->start_date }}</td>
                                     <td>{{ $competition->end_date }}</td>
-                                    @role('admin')
-                                        <td class="d-flex align-items-center justify-content-center gap-3">
+                                    <td class="d-flex align-items-center justify-content-center gap-3">
+                                        @role('admin')
                                             <a href="{{ route('competitions.edit', ['competition' => $competition->id]) }}"
                                                 class="btn btn-sm btn-primary">
                                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -72,16 +72,12 @@
                                                     <i class="fa-solid fa-trash"></i>
                                                 </button>
                                             </form>
-                                        </td>
-                                    @endrole
-                                    @role('user')
-                                        <td>
-                                            <a class="btn btn-warning btn-sm"
-                                                href="{{ route('competitions.show', ['competition' => $competition->id]) }}">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </a>
-                                        </td>
-                                    @endrole
+                                        @endrole
+                                        <a class="btn btn-warning btn-sm"
+                                            href="{{ route('competitions.show', ['competition' => $competition->id]) }}">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
