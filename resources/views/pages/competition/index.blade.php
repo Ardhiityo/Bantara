@@ -33,11 +33,13 @@
                     </h5>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-end">
-                            <a href="{{ route('competitions.create') }}" class="btn btn-primary mb-3">Create</a>
+                    @role('admin')
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-end">
+                                <a href="{{ route('competitions.create') }}" class="btn btn-primary mb-3">Create</a>
+                            </div>
                         </div>
-                    </div>
+                    @endrole
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
@@ -45,7 +47,9 @@
                                 <th>Description</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
-                                <th>Action</th>
+                                @role('admin')
+                                    <th>Action</th>
+                                @endrole
                             </tr>
                         </thead>
                         <tbody>
@@ -55,21 +59,23 @@
                                     <td>{{ $competition->description }}</td>
                                     <td>{{ $competition->start_date }}</td>
                                     <td>{{ $competition->end_date }}</td>
-                                    <td class="d-flex align-items-center gap-3">
-                                        <a href="{{ route('competitions.edit', ['competition' => $competition->id]) }}"
-                                            class="btn btn-sm btn-primary">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
-                                        <form
-                                            action="{{ route('competitions.destroy', ['competition' => $competition->id]) }}"
-                                            method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
+                                    @role('admin')
+                                        <td class="d-flex align-items-center gap-3">
+                                            <a href="{{ route('competitions.edit', ['competition' => $competition->id]) }}"
+                                                class="btn btn-sm btn-primary">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <form
+                                                action="{{ route('competitions.destroy', ['competition' => $competition->id]) }}"
+                                                method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-danger">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    @endrole
                                 </tr>
                             @endforeach
                         </tbody>

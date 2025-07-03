@@ -33,11 +33,13 @@
                     </h5>
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 d-flex justify-content-end">
-                            <a href="{{ route('members.create') }}" class="btn btn-primary mb-3">Create</a>
+                    @role('admin')
+                        <div class="row">
+                            <div class="col-12 d-flex justify-content-end">
+                                <a href="{{ route('members.create') }}" class="btn btn-primary mb-3">Create</a>
+                            </div>
                         </div>
-                    </div>
+                    @endrole
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
@@ -46,7 +48,9 @@
                                 <th class="text-center">Phone</th>
                                 <th class="text-center">Position</th>
                                 <th class="text-center">Verification</th>
-                                <th class="text-center">Action</th>
+                                @role('admin')
+                                    <th class="text-center">Action</th>
+                                @endrole
                             </tr>
                         </thead>
                         <tbody class="text-center">
@@ -67,20 +71,22 @@
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="d-flex justify-content-center align-items-center gap-3">
-                                        <a href="{{ route('members.edit', ['member' => $user->member->id]) }}"
-                                            class="btn btn-sm btn-warning">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </a>
-                                        <form action="{{ route('members.destroy', ['member' => $user->member->id]) }}"
-                                            method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
+                                    @role('admin')
+                                        <td class="d-flex justify-content-center align-items-center gap-3">
+                                            <a href="{{ route('members.edit', ['member' => $user->member->id]) }}"
+                                                class="btn btn-sm btn-warning">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+                                            <form action="{{ route('members.destroy', ['member' => $user->member->id]) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-danger">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    @endrole
                                 </tr>
                             @endforeach
                         </tbody>

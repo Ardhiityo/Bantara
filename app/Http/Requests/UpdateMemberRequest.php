@@ -23,7 +23,7 @@ class UpdateMemberRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:3', 'max:25'],
-            'email' => ['required', 'email', 'unique:users,email,' . $this->route('member')->id],
+            'email' => ['required', 'email', 'unique:users,email,' . $this->route('member')->user->id],
             'phone' => ['required', 'numeric', 'unique:members,phone,' . $this->route('member')->id],
             'password' => ['nullable', 'min:8', 'max:25'],
             'position_id' => ['required', 'exists:positions,id'],
