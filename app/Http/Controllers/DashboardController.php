@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\DashboardService;
 use Illuminate\Http\Request;
+use App\Services\DashboardService;
+use Illuminate\Support\Facades\Log;
 
 class DashboardController extends Controller
 {

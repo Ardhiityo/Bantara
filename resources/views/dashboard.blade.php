@@ -82,7 +82,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Profile Visit</h4>
+                                <h4>New Members</h4>
                             </div>
                             <div class="card-body">
                                 <div id="chart-profile-visit"></div>
@@ -119,8 +119,12 @@
                                     <img src="{{ asset('assets/compiled/jpg/7.jpg') }}">
                                 </div>
                                 <div class="name ms-4">
-                                    <h5 class="mb-1">{{ $memberCompetition->member->user->name }}</h5>
-                                    <h6 class="text-muted mb-0">{{ $memberCompetition->competition->name }}</h6>
+                                    <h5 class="mb-1">
+                                        {{ ucfirst(Str::limit($memberCompetition->member->user->name, 5, '...')) }}
+                                    </h5>
+                                    <h6 class="text-muted mb-0">
+                                        {{ ucfirst(Str::limit($memberCompetition->competition->title, 15, '...')) }}
+                                    </h6>
                                 </div>
                             </div>
                         @empty
@@ -130,7 +134,7 @@
                         @endforelse
                         <div class="px-4">
                             <a href="{{ route('member-competitions.index') }}"
-                                class='btn btn-block btn-xl btn-outline-primary font-bold mt-3'>
+                                class='btn btn-block btn-outline-primary font-bold mt-2'>
                                 View All
                             </a>
                         </div>
@@ -140,3 +144,53 @@
         </section>
     </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('assets/extensions/apexcharts/apexcharts.min.js') }}"></script>
+    <script>
+        var optionsProfileVisit = {
+            annotations: {
+                position: "back",
+            },
+            dataLabels: {
+                enabled: false,
+            },
+            chart: {
+                type: "bar",
+                height: 300,
+            },
+            fill: {
+                opacity: 1,
+            },
+            plotOptions: {},
+            series: [{
+                name: "members",
+                data: @json($statistics),
+            }, ],
+            colors: "#435ebe",
+            xaxis: {
+                categories: [
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Aug",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dec",
+                ],
+            },
+        }
+
+        var chartProfileVisit = new ApexCharts(
+            document.querySelector("#chart-profile-visit"),
+            optionsProfileVisit
+        )
+
+        chartProfileVisit.render()
+    </script>
+@endpush

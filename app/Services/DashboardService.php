@@ -24,6 +24,7 @@ class DashboardService
         $competitionCount = $this->competitionRepository->getTotal();
         $memberCompetitionCount = $this->memberCompetitionRepository->getTotal();
         $memberCompetitions = $this->memberCompetitionRepository->getLatest();
+        $statistics = $this->memberRepository->getStatistics();
 
         return compact(
             'memberCount',
@@ -31,7 +32,8 @@ class DashboardService
             'competitionCount',
             'memberCompetitionCount',
             'memberCompetitions',
-            'memberCompetitions'
+            'memberCompetitions',
+            'statistics'
         );
     }
 };
