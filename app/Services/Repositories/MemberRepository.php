@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Member;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Services\Interfaces\MemberInterface;
 
@@ -57,7 +58,7 @@ class MemberRepository implements MemberInterface
 
     public function getTotal()
     {
-        return Member::count();
+        return Member::where('is_verified', true)->count();
     }
 
     public function getStatistics()
@@ -67,9 +68,23 @@ class MemberRepository implements MemberInterface
         $data = [];
 
         foreach ($months as $month) {
-            $data[] = Member::whereMonth('created_at', $month)->count();
+            $data[] = Member::whereMonth('created_at', $month)
+                ->whereYear('created_at', now()->year)
+                ->count();
         }
 
         return $data;
+    }
+
+    public function join($competition)
+    {
+        try {
+            DB::beginTransaction();
+            Auth::user()->member->memberCompetitions()->attach($competition->id);
+            DB::commit();
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Log::info($th->getMessage(), ['join member']);
+        }
     }
 }

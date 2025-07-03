@@ -11,4 +11,5 @@ interface MemberInterface
     public function update($data, Member $member);
     public function getTotal();
     public function getStatistics();
+    public function join($competition);
 }

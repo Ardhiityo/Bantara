@@ -6,11 +6,13 @@ use App\Http\Requests\StoreCompetitionRequest;
 use App\Http\Requests\UpdateCompetitionRequest;
 use App\Models\Competition;
 use App\Services\Interfaces\CompetitionInterface;
+use App\Services\Interfaces\MemberCompetitionInterface;
 
 class CompetitionController extends Controller
 {
     public function __construct(
-        private CompetitionInterface $competitionRepository
+        private CompetitionInterface $competitionRepository,
+        private MemberCompetitionInterface $memberCompetitionRepository
     ) {}
 
     /**
@@ -48,7 +50,9 @@ class CompetitionController extends Controller
      */
     public function show(Competition $competition)
     {
-        //
+        $alreadyRegistered = $this->memberCompetitionRepository->check($competition);
+
+        return view('pages.competition.show', compact('competition', 'alreadyRegistered'));
     }
 
     /**

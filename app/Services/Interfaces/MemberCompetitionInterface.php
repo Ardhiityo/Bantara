@@ -8,4 +8,5 @@ interface MemberCompetitionInterface
     public function store(array $data);
     public function getTotal();
     public function getLatest();
+    public function check($competition);
 }

@@ -11,6 +11,7 @@ use App\Http\Controllers\MemberCompetitionController;
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('members', MemberController::class);
+    Route::post('members/join/{competition}', [MemberController::class, 'join'])->name('members.join');
     Route::resource('positions', PositionController::class);
     Route::resource('competitions', CompetitionController::class);
     Route::resource('member-competitions', MemberCompetitionController::class);

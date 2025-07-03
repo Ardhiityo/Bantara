@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Competition;
 use App\Http\Requests\StoreMemberRequest;
 use App\Http\Requests\UpdateMemberRequest;
 use App\Services\Interfaces\MemberInterface;
@@ -89,5 +90,12 @@ class MemberController extends Controller
         $member->user()->delete();
 
         return redirect()->route('members.index')->with('success', 'Member deleted successfully');
+    }
+
+    public function join(Competition $competition)
+    {
+        $this->memberRepository->join($competition);
+
+        return redirect()->route('member-competitions.index')->with('success', 'Member joined successfully');
     }
 }

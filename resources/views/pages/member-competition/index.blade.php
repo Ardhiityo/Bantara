@@ -48,7 +48,7 @@
                                 <th class="text-center">Title</th>
                                 <th class="text-center">Status</th>
                                 @role('admin')
-                                    <th>Action</th>
+                                    <th class="text-center">Action</th>
                                 @endrole
                             </tr>
                         </thead>
@@ -68,7 +68,7 @@
                                         @endif
                                     </td>
                                     @role('admin')
-                                        <td class="d-flex align-items-center gap-3">
+                                        <td class="d-flex justify-content-center align-items-center gap-3">
                                             <a class="btn btn-sm btn-warning"
                                                 href="{{ route('member-competitions.edit', ['member_competition' => $memberCompetition->id]) }}">
                                                 <i class="fa-solid fa-pen-to-square"></i>
