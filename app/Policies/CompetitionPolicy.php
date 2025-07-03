@@ -35,7 +35,7 @@ class CompetitionPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Competition $competition): bool
+    public function update(User $user): bool
     {
         return $user->hasRole('admin');
     }
@@ -43,7 +43,7 @@ class CompetitionPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Competition $competition): bool
+    public function delete(User $user): bool
     {
         return $user->hasRole('admin');
     }
